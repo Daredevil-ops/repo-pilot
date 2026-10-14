@@ -1,0 +1,115 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-terminal: var(--terminal);
+  --color-terminal-border: var(--terminal-border);
+  --color-glow: var(--glow);
+}
+
+:root {
+  --radius: 0.5rem;
+  /* Deep-space developer dark theme */
+  --background: oklch(0.145 0.02 260);
+  --foreground: oklch(0.93 0.01 250);
+  --card: oklch(0.175 0.022 260);
+  --card-foreground: oklch(0.93 0.01 250);
+  --popover: oklch(0.175 0.022 260);
+  --popover-foreground: oklch(0.93 0.01 250);
+  /* Electric mint — terminal green, modernized */
+  --primary: oklch(0.85 0.18 165);
+  --primary-foreground: oklch(0.16 0.03 200);
+  --secondary: oklch(0.21 0.025 260);
+  --secondary-foreground: oklch(0.9 0.01 250);
+  --muted: oklch(0.21 0.025 260);
+  --muted-foreground: oklch(0.65 0.02 255);
+  --accent: oklch(0.24 0.04 165);
+  --accent-foreground: oklch(0.85 0.18 165);
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: oklch(0.97 0.01 250);
+  --border: oklch(0.26 0.025 260);
+  --input: oklch(0.26 0.025 260);
+  --ring: oklch(0.85 0.18 165);
+  --terminal: oklch(0.12 0.018 260);
+  --terminal-border: oklch(0.28 0.03 260);
+  --glow: oklch(0.85 0.18 165 / 0.15);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .font-display {
+    font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .font-mono {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+}
+
+@utility text-glow {
+  text-shadow: 0 0 24px var(--glow), 0 0 48px var(--glow);
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(var(--color-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 75%);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@utility animate-cursor-blink {
+  animation: blink 1.1s step-end infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
+}
